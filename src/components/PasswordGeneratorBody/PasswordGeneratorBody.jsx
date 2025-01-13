@@ -1,13 +1,26 @@
 import React from 'react'
 import style from './style.module.css'
 
-export default function PasswordGeneratorBody() {
+export default function PasswordGeneratorBody(props) {
+
+  const submit = (event) =>{
+    event.preventDefault(); // this can stop reload page after button click 
+    let formData = {}
+    new FormData(event.currentTarget).forEach((value, key)=>{
+      formData[key] = value;
+    })
+    console.log("gfgfgf", formData);
+    //generate a random password using formData
+    let generatedPassword = Math.random();
+    props.onSubmit(generatedPassword);
+  }
+
   return (
-    <form>
+    <form onSubmit={submit}>
       <div className={style.grid_container}>
         <div className={style.grid_item}>
           size
-          <select defaultValue={15}>
+          <select name='size' defaultValue={15}>
             <option>5</option>
             <option>10</option>
             <option>15</option>
@@ -17,22 +30,22 @@ export default function PasswordGeneratorBody() {
 
         <div className={style.grid_item}>
           uppercase
-          <input type="checkbox" defaultChecked/>
+          <input name='uppercase' type="checkbox" defaultChecked/>
         </div>
 
         <div className={style.grid_item}>
           numbers
-          <input type="checkbox" defaultChecked/>
+          <input name='numbers' type="checkbox" defaultChecked/>
         </div>
 
         <div className={style.grid_item}>
           specials
-          <input type="checkbox" defaultChecked/>
+          <input name='specials' type="checkbox" defaultChecked/>
         </div>
       </div>
 
       <div className={style.btn_container}>
-        <button className={style.btn_generate}>GENERATE</button>
+        <button type='submit' className={style.btn_generate}>GENERATE</button>
       </div>
       
     </form>
