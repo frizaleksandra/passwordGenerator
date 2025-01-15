@@ -16,5 +16,15 @@ export function generatePassword(config) {
     alphabet += UPPERCASE;
     result += getRandomChar(UPPERCASE);
   }
+
+  if (config.numbers) {
+    alphabet += NUMBERS;
+    result += getRandomChar(NUMBERS);
+  }
+
+  if (config.specials) {
+    alphabet += SPECIALS;
+    result += getRandomChar(SPECIALS);
+  }
   return result;
 }
