@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './style.module.css'
+import { generatePassword } from '../../lib/password';
 
 export default function PasswordGeneratorBody(props) {
 
@@ -9,10 +10,9 @@ export default function PasswordGeneratorBody(props) {
     new FormData(event.currentTarget).forEach((value, key)=>{
       formData[key] = value;
     })
-    console.log("gfgfgf", formData);
     //generate a random password using formData
-    let generatedPassword = Math.random();
-    props.onSubmit(generatedPassword);
+    // let generatedPassword = Math.random();
+    props.onSubmit(generatePassword(formData));
   }
 
   return (
