@@ -10,10 +10,11 @@ export function generatePassword(config) {
   const SPECIALS = "!@#$%^&*()_-+=[]{};:'\",.<>?/\\";
 
   let alphabet = LOWERCASE;
+  result += getRandomChar(LOWERCASE);
 
   if (config.uppercase) {
     alphabet += UPPERCASE;
-    getRandomChar(UPPERCASE);
+    result += getRandomChar(UPPERCASE);
   }
   return result;
 }
